@@ -1,0 +1,19 @@
+---
+import PokeList from "../components/PokeList"
+import pokeWorldTitle from "../assets/pokeWorldTitle.png"
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Poke World</title>
+	</head>
+	<body>
+		
+		<img class="w-2/4 m-auto" src="/pokeWorldTitle.png" alt="pokemon title Card">
+		<PokeList client:load />
+	</body>
+</html>
