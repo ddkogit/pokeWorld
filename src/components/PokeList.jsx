@@ -25,7 +25,7 @@ const PokeList = () => {
         <div className="flex  items-center">
       <input  type="text" className="bg-blue-500 text-white p-5 w-3/4 mx-auto rounded-2xl"  />
         </div>
-      <div className="m-10 flex gap-10 flex-wrap">
+      <div className="m-10 flex gap-10 flex-wrap items-center justify-center">
        {
         pokeList?.map((poke)=>(
           <div key={poke.name} className="">

@@ -23,7 +23,7 @@ const SinglePoke = ({ name, url }) => {
 
   return (
     <div className="">
-        <div className="bg-red-100 p-10 rounded-xl">
+        <div className="bg-red-100 p-10 rounded-xl w-[300px] h-[300px] flex flex-col items-center justify-between">
 
         <img src={pokeImage} width={100} alt="" />
       <h2 className="text-red-800 text-3xl uppercase"> {name}</h2>
