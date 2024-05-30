@@ -72,8 +72,9 @@ const PokeList = () => {
           onChange={handleSearch}
           value={searchPoke}
           type="text"
-          className="bg-blue-500 text-white p-3 w-3/4 mx-auto rounded-2xl text-xl
+          className="bg-slate-500 text-white p-3 w-3/4 mx-auto rounded-2xl text-xl
       placeholder-gray-200
+      focus:outline:none
       "
           placeholder="Search A Pokemon"
         />
