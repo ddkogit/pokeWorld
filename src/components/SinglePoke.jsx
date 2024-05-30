@@ -4,40 +4,35 @@ import useFetch from "../useFetch";
 const SinglePoke = ({ name, url }) => {
   const [pokeImage, setPokeImage] = useState();
 
-  const [pokeType,setPokeType] = useState([]);
-       
+  const [pokeType, setPokeType] = useState([]);
 
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
-      .then((data) =>{
+      .then((data) => {
         setPokeType(data.types);
-        setPokeImage(data.sprites.other.dream_world.front_default)
-      }) ;
-      
-    }, []);
+        setPokeImage(data.sprites.other.dream_world.front_default);
+      });
+  }, []);
 
-    console.log(pokeImage)
-
-
+  console.log(pokeImage);
 
   return (
     <div className="">
-        <div className="bg-red-100 p-10 rounded-xl w-[300px] h-[300px] flex flex-col items-center justify-between">
-
-        <img src={pokeImage} width={100} alt="" />
-      <h2 className="text-red-800 text-3xl uppercase"> {name}</h2>
-      <div>
-       {
-           pokeType?.map((type,index)=>(
-               <div key={index}>
-
-            <button>{type.type.name}.......            
-            </button>
+      <div className="bg-red-100 p-10 rounded-xl w-[250px] h-[250px] flex flex-col items-center justify-between">
+        <img
+          src={pokeImage}
+          className="w-[100px] h-[100px]"
+          alt={`image of pokemon ${name}`}
+        />
+        <h2 className="text-red-800 text-3xl uppercase"> {name}</h2>
+        <div className="flex gap-5 font-bold">
+          {pokeType?.map((type, index) => (
+            <div key={index} className="text-white bg-blue-500 rounded-xl px-5 py-1 my-3 ">
+             {type.type.name}
             </div>
-        ))
-    }
-    </div>
+          ))}
+        </div>
       </div>
 
       <h3></h3>
