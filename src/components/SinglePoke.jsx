@@ -15,11 +15,10 @@ const SinglePoke = ({ name, url }) => {
       });
   }, []);
 
-  console.log(pokeImage);
 
   return (
     <div className="">
-      <div className="bg-red-100 p-10 rounded-xl w-[250px] lg:h-[250px] flex flex-col items-center justify-between">
+      <div className="bg-red-100 p-10 rounded-xl w-[250px] h-[300px]   flex flex-col items-center justify-between">
         <img
           src={pokeImage}
           className="w-[100px] h-[100px]"
