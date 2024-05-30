@@ -10,50 +10,45 @@ const PokeList = () => {
   const [searchPoke, setSearchPoke] = useState("");
   const [searchedList, setSearchedList] = useState([]);
 
+  const [loading, setLoading] = useState(true);
 
-  //here handlesearch only recreated when searchPoke changes 
-  const handleSearch = useCallback((e) => {
-    setSearchPoke(e.target.value);
-  }, [searchPoke]);
+  //here handlesearch only recreated when searchPoke changes
+  const handleSearch = useCallback(
+    (e) => {
+      setSearchPoke(e.target.value);
+    },
+    [searchPoke]
+  );
 
   useEffect(() => {
-
-
     const cachedData = localStorage.getItem("pokeListData");
     const cacheTime = localStorage.getItem("cacheTime");
-  
-  
-    if(cachedData && cacheTime){
-      const expiring = 60 * 60 *1000;
-      const currentTime = Date.now();
-  
-      if(currentTime - parseInt(cacheTime) < expiring){
-          setPokeList(JSON.parse(cachedData));
-          setSearchedList(JSON.parse(cachedData));
-  
-          return;
-  
-      }
-      else{
-          localStorage.removeItem("pokeListData");
-          localStorage.removeItem("cacheTime");
-      }
-  
-    }
 
+    if (cachedData && cacheTime) {
+      const expiring = 60 * 60 * 1000;
+      const currentTime = Date.now();
+
+      if (currentTime - parseInt(cacheTime) < expiring) {
+        setPokeList(JSON.parse(cachedData));
+        setSearchedList(JSON.parse(cachedData));
+
+        return;
+      } else {
+        localStorage.removeItem("pokeListData");
+        localStorage.removeItem("cacheTime");
+      }
+    }
 
     fetch(url)
       .then((res) => res.json())
-      .then((data) => {setPokeList(data.results)
+      .then((data) => {
+        setPokeList(data.results);
 
-        localStorage.setItem("pokeListData",JSON.stringify(data.results));
-        localStorage.setItem("cacheTime",Date.now());
-
+        localStorage.setItem("pokeListData", JSON.stringify(data.results));
+        localStorage.setItem("cacheTime", Date.now());
       })
-      .catch((error)=>console.log("error occured"));
+      .catch((error) => console.log("error occured"));
   }, [url]);
-
-
 
   //memorize filretedList so it dont run in every render.
   const filteredList = useMemo(() => {
@@ -64,6 +59,7 @@ const PokeList = () => {
 
   useEffect(() => {
     setSearchedList(filteredList);
+    setLoading(false);
   }, [filteredList]);
 
   return (
@@ -79,17 +75,31 @@ const PokeList = () => {
           placeholder="Search A Pokemon"
         />
       </div>
-      <div className="m-10 flex gap-10 flex-wrap items-center justify-center">
-        {searchedList.length === 0 ? (
-          <div className="text-4xl font-bold text-red-600 text-center">Sorry. That Pokemon does not exists</div>
-        ) : (
-          searchedList.map((poke) => (
-            <div key={poke.name} className="">
-              <SinglePoke name={poke.name} url={poke.url} />
+      {loading ? (
+        <div className="flex justify-center items-center gap-3 my-10">
+          <img src="/favicon.svg" className="w-8" alt="loading pikachu" />
+          <img src="/favicon.svg" className="w-8" alt="loading pikachu" />
+          <div className="text-4xl font-bold text-yellow-400 ">
+            Loading... please wait
+          </div>
+          <img src="/favicon.svg" className="w-8" alt="loading pikachu" />
+          <img src="/favicon.svg" className="w-8" alt="loading pikachu" />
+        </div>
+      ) : (
+        <div className="m-10 flex gap-10 flex-wrap items-center justify-center">
+          {searchedList.length === 0 ? (
+            <div className="text-4xl font-bold text-red-600 text-center">
+              Sorry. That Pokemon does not exists
             </div>
-          ))
-        )}
-      </div>
+          ) : (
+            searchedList.map((poke) => (
+              <div key={poke.name} className="">
+                <SinglePoke name={poke.name} url={poke.url} />
+              </div>
+            ))
+          )}
+        </div>
+      )}
     </div>
   );
 };
