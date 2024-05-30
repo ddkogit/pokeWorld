@@ -1,6 +1,10 @@
 ---
-import PokeList from "../components/PokeList"
-import pokeWorldTitle from "../assets/pokeWorldTitle.png"
+import PokeList from "../components/PokeList";
+export const seo={
+  title: "Poke World",
+  description: "Discover Pokemons in PokeWrold with our custome Pokemon List.",
+  keywords: "Pokemon, Pokemon List, Pokemon World, PokeAPI, Poke World, Pikachu",
+}
 ---
 
 <html lang="en">
@@ -9,7 +13,9 @@ import pokeWorldTitle from "../assets/pokeWorldTitle.png"
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Poke World</title>
+		<title>{seo.title}</title>
+		<meta name="description" content={seo.description} />
+		<meta name="keywords" content={seo.keywords} />
 	</head>
 	<body>
 		

@@ -10,9 +10,11 @@ const PokeList = () => {
   const [searchPoke, setSearchPoke] = useState("");
   const [searchedList, setSearchedList] = useState([]);
 
+
+  //here handlesearch only recreated when searchPoke changes 
   const handleSearch = useCallback((e) => {
     setSearchPoke(e.target.value);
-  }, []);
+  }, [searchPoke]);
 
   useEffect(() => {
     fetch(url)
@@ -20,6 +22,8 @@ const PokeList = () => {
       .then((data) => setPokeList(data.results));
   }, [url]);
 
+
+  //memorize filretedList so it dont run in every render.
   const filteredList = useMemo(() => {
     return pokeList.filter((poke) =>
       poke.name.toLowerCase().includes(searchPoke.toLowerCase())
