@@ -17,10 +17,42 @@ const PokeList = () => {
   }, [searchPoke]);
 
   useEffect(() => {
+
+
+    const cachedData = localStorage.getItem("pokeListData");
+    const cacheTime = localStorage.getItem("cacheTime");
+  
+  
+    if(cachedData && cacheTime){
+      const expiring = 60 * 60 *1000;
+      const currentTime = Date.now();
+  
+      if(currentTime - parseInt(cacheTime) < expiring){
+          setPokeList(JSON.parse(cachedData));
+          setSearchedList(JSON.parse(cachedData));
+  
+          return;
+  
+      }
+      else{
+          localStorage.removeItem("pokeListData");
+          localStorage.removeItem("cacheTime");
+      }
+  
+    }
+
+
     fetch(url)
       .then((res) => res.json())
-      .then((data) => setPokeList(data.results));
+      .then((data) => {setPokeList(data.results)
+
+        localStorage.setItem("pokeListData",JSON.stringify(data.results));
+        localStorage.setItem("cacheTime",Date.now());
+
+      })
+      .catch((error)=>console.log("error occured"));
   }, [url]);
+
 
 
   //memorize filretedList so it dont run in every render.

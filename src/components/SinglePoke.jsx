@@ -12,7 +12,7 @@ const SinglePoke = ({ name, url }) => {
       .then((data) => {
         setPokeType(data.types);
         setPokeImage(data.sprites.other.dream_world.front_default);
-      });
+      }).catch((error)=>console.log("error occured"));
   }, []);
 
 
