@@ -6,11 +6,14 @@ const PokeList = () => {
   const url = "https://pokeapi.co/api/v2/pokemon/";
 
   const [pokeList, setPokeList] = useState();
-  const [pokeDetail, setPokeDetail] = useState([]);
+ 
+  const [searchPoke,setSearchPoke] = useState("");
 
-  const [testurl, setTesturl] = useState();
+  const handleSearch=()=>{
 
+  }
 
+  
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
@@ -20,10 +23,16 @@ const PokeList = () => {
 
 
 
+
+
   return (
     <div >
         <div className="flex  items-center">
-      <input  type="text" className="bg-blue-500 text-white p-5 w-3/4 mx-auto rounded-2xl"  />
+      <input  
+      onChange={handleSearch} value={searchPoke}
+      type="text" className="bg-blue-500 text-white p-3 w-3/4 mx-auto rounded-2xl text-xl
+      placeholder-gray-200
+      "  placeholder="Search A Pokemon"/>
         </div>
       <div className="m-10 flex gap-10 flex-wrap items-center justify-center">
        {
