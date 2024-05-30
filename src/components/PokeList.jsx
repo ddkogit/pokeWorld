@@ -12,7 +12,8 @@ const PokeList = () => {
 
   const [loading, setLoading] = useState(true);
 
-  //here handlesearch only recreated when searchPoke changes
+ 
+ 
   const handleSearch = useCallback(
     (e) => {
       setSearchPoke(e.target.value);
@@ -42,6 +43,7 @@ const PokeList = () => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
+          
         setPokeList(data.results);
 
         localStorage.setItem("pokeListData", JSON.stringify(data.results));
@@ -50,16 +52,17 @@ const PokeList = () => {
       .catch((error) => console.log("error occured"));
   }, [url]);
 
-  //memorize filretedList so it dont run in every render.
   const filteredList = useMemo(() => {
     return pokeList.filter((poke) =>
       poke.name.toLowerCase().includes(searchPoke.toLowerCase())
     );
+    
   }, [searchPoke, pokeList]);
 
   useEffect(() => {
-    setSearchedList(filteredList);
     setLoading(false);
+    setSearchedList(filteredList);
+   
   }, [filteredList]);
 
   return (

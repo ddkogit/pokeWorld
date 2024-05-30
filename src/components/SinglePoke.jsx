@@ -25,7 +25,7 @@ const SinglePoke = ({ name, url }) => {
           alt={`image of pokemon ${name}`}
         />
         <h2 className="text-red-800 text-3xl uppercase"> {name}</h2>
-        <div className="lg:flex gap-5 font-bold">
+        <div className="lg:flex gap-5 ">
           {pokeType?.map((type, index) => (
             <div key={index} className="text-white bg-blue-500 rounded-xl px-5 py-1 my-3 ">
              {type.type.name}

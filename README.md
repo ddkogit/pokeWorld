@@ -1,47 +1,62 @@
-# Astro Starter Kit: Minimal
+# PokeWorld Website: Discover Pokemons with Custom Pokemon List
 
-```sh
-npm create astro@latest -- --template minimal
-```
+PokeWorld is a website that allows users to discover Pokemon using a custom Pokemon list. It utilizes the API provided by [PokeAPI](https://pokeapi.co/).
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+## Technologies Used
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- Astro with React and Tailwind CSS
 
-## 🚀 Project Structure
+## Thought Process
 
-Inside of your Astro project, you'll see the following folders and files:
+- The API returns an array of objects containing the Pokemon name and URL.
+- The URL can be used to fetch more details about each Pokemon, including its type and image.
+- Two React components, `PokeList` and `SinglePoke`, are created. 
+- SEO is implemented using relevant keywords related to Pokemon.
+- Caching is implemented for 1 hour to improve performance.
+- While initially considering a context provider and a custom hook for fetching data, the idea was cancled as the project only have 2 components and requires few fetch call code.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Features
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- Fully responsive design; layout adjusts dynamically based on screen size.
+- Pokemon search functionality allows users to find Pokemon by name.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Live Website
 
-Any static assets, like images, can be placed in the `public/` directory.
+Visit the live website at [PokeWorld](https://poke-world-three.vercel.app/).
 
-## 🧞 Commands
+## GitHub Repository
 
-All commands are run from the root of the project, from a terminal:
+View the code on [GitHub](https://github.com/ddkogit/pokeWorld).
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Setup Instructions
 
-## 👀 Want to learn more?
+Follow these steps to clone the PokeWorld project from GitHub and run it locally on your machine:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+1. **Clone the GitHub Repository:**
+
+    ```bash
+    git clone https://github.com/ddkogit/pokeWorld.git
+    ```
+
+2. **Navigate to the Project Directory:**
+
+    ```bash
+    cd pokeWorld
+    ```
+
+3. **Install Dependencies:**
+
+    ```bash
+    npm install
+    ```
+
+4. **Run the Project:**
+
+    ```bash
+    npm run dev
+    ```
+
+    Now you can view the PokeWorld website in your browser at `http://localhost:4321`.
+
+
+
