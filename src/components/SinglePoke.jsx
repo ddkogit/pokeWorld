@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import useFetch from "../useFetch";
 
+import Pokemodal from "./PokeModal"
+
 const SinglePoke = ({ name, url }) => {
   const [pokeImage, setPokeImage] = useState();
 
@@ -19,9 +21,10 @@ const SinglePoke = ({ name, url }) => {
   return (
     <div className="max-w-xs transition duration-300 ease-in-out hover:scale-105">
       <div
-        className="bg-gray-200  p-10 rounded-xl w-[250px] h-[300px]
+        className="bg-gray-200  p-10 rounded-xl w-[250px] h-[350px]
          flex flex-col items-center justify-between hover:bg-gray-400 hover:cursor-pointer shadow-md"
       >
+        <Pokemodal />
         <img
           src={pokeImage}
           className="w-[100px] h-[100px]"
