@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import useFetch from "../useFetch";
 import SinglePoke from "./SinglePoke";
 import PikachuSpecial from "./PikachuSpecial";
-import Togglebtn from "./Togglebtn"
+
 
 const PokeList = () => {
   const url = "https://pokeapi.co/api/v2/pokemon/";
