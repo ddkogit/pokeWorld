@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import useFetch from "../useFetch";
 import SinglePoke from "./SinglePoke";
+import PikachuSpecial from "./PikachuSpecial";
+import Togglebtn from "./Togglebtn"
 
 const PokeList = () => {
   const url = "https://pokeapi.co/api/v2/pokemon/";
@@ -12,8 +14,6 @@ const PokeList = () => {
 
   const [loading, setLoading] = useState(true);
 
- 
- 
   const handleSearch = useCallback(
     (e) => {
       setSearchPoke(e.target.value);
@@ -32,6 +32,7 @@ const PokeList = () => {
       if (currentTime - parseInt(cacheTime) < expiring) {
         setPokeList(JSON.parse(cachedData));
         setSearchedList(JSON.parse(cachedData));
+        setLoading(false);
 
         return;
       } else {
@@ -43,36 +44,36 @@ const PokeList = () => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-          
         setPokeList(data.results);
 
         localStorage.setItem("pokeListData", JSON.stringify(data.results));
         localStorage.setItem("cacheTime", Date.now());
+        setLoading(false);
       })
       .catch((error) => console.log("error occured"));
+    setLoading(false);
   }, [url]);
 
   const filteredList = useMemo(() => {
     return pokeList.filter((poke) =>
       poke.name.toLowerCase().includes(searchPoke.toLowerCase())
     );
-    
   }, [searchPoke, pokeList]);
 
   useEffect(() => {
-    setLoading(false);
     setSearchedList(filteredList);
-   
   }, [filteredList]);
 
   return (
     <div>
+
       <div className="flex  items-center">
         <input
           onChange={handleSearch}
           value={searchPoke}
           type="text"
-          className="bg-slate-500 text-white p-3 w-3/4 mx-auto rounded-2xl text-xl
+          className="bg-slate-500 text-white p-2 lg:p-3
+          w-3/4 mx-auto rounded-2xl lg:text-xl
       placeholder-gray-200
       focus:outline:none
       "
@@ -81,13 +82,14 @@ const PokeList = () => {
       </div>
       {loading ? (
         <div className="flex justify-center items-center gap-3 my-10">
-          <img src="/favicon.svg" className="w-8" alt="loading pikachu" />
-          <img src="/favicon.svg" className="w-8" alt="loading pikachu" />
+          <PikachuSpecial width="w-8" />
+          <PikachuSpecial width="w-8" />
+
           <div className="text-4xl font-bold text-yellow-400 ">
             Loading... please wait
           </div>
-          <img src="/favicon.svg" className="w-8" alt="loading pikachu" />
-          <img src="/favicon.svg" className="w-8" alt="loading pikachu" />
+          <PikachuSpecial width="w-8" />
+          <PikachuSpecial width="w-8" />
         </div>
       ) : (
         <div className="m-10 flex gap-10 flex-wrap items-center justify-center">

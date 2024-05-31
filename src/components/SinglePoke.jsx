@@ -12,14 +12,16 @@ const SinglePoke = ({ name, url }) => {
       .then((data) => {
         setPokeType(data.types);
         setPokeImage(data.sprites.other.dream_world.front_default);
-      }).catch((error)=>console.log("error occured"));
+      })
+      .catch((error) => console.log("error occured"));
   }, []);
-
 
   return (
     <div className="max-w-xs transition duration-300 ease-in-out hover:scale-105">
-      <div className="bg-gray-200  p-10 rounded-xl w-[250px] h-[300px]
-         flex flex-col items-center justify-between hover:bg-gray-400 hover:cursor-pointer shadow-md">
+      <div
+        className="bg-gray-200  p-10 rounded-xl w-[250px] h-[300px]
+         flex flex-col items-center justify-between hover:bg-gray-400 hover:cursor-pointer shadow-md"
+      >
         <img
           src={pokeImage}
           className="w-[100px] h-[100px]"
@@ -28,8 +30,11 @@ const SinglePoke = ({ name, url }) => {
         <h2 className="text-slate-900 font-bold text-3xl uppercase"> {name}</h2>
         <div className="lg:flex gap-5 ">
           {pokeType?.map((type, index) => (
-            <div key={index} className="text-white bg-slate-700 rounded-xl px-5 py-1 my-3">
-             {type.type.name}
+            <div
+              key={index}
+              className="text-white bg-slate-700 rounded-xl px-5 py-1 my-3"
+            >
+              {type.type.name}
             </div>
           ))}
         </div>

@@ -1,6 +1,7 @@
 ---
 import '@fontsource/roboto';
 import PokeList from "../components/PokeList";
+import PikachuSpecial from '../components/PikachuSpecial';
 export const seo={
   title: "Poke World",
   description: "Discover Pokemons in PokeWrold with our custome Pokemon List.",
@@ -20,15 +21,17 @@ export const seo={
 
 	</head>
 
-	<body >
+	<body  class="bg-gray-800">
+
+		
 		
 		<img class="w-1/3 m-auto" src="/pokeWorldTitle.png" alt="pokemon title Card">
 		<div class="flex items-center justify-center gap-3 my-6">
 
-			<img src="/favicon.svg" class="w-10" alt="">
-			<div class="text-slate-900 text-xl font-bold">
-
-				<p >Hello Fans, have a look at these amazing pokemons.
+			<PikachuSpecial width="w-10" />
+			<div class=" text-slate-100 text-xl font-bold">
+	
+				<p  >Hello Fans, have a look at these amazing pokemons.
 					
 				</p>
 				<p>
