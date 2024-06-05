@@ -66,6 +66,9 @@ const PokeList = () => {
 
   return (
     <div>
+    
+    
+
 
       <div className="flex  items-center">
         <input

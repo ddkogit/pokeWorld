@@ -7,6 +7,7 @@ const SinglePoke = ({ name, url }) => {
 
   const [pokeType, setPokeType] = useState([]);
 
+
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
@@ -17,8 +18,12 @@ const SinglePoke = ({ name, url }) => {
       .catch((error) => console.log("error occured"));
   }, []);
 
+ 
+
   return (
-    <div className="max-w-xs transition duration-300 ease-in-out hover:scale-105">
+    <div 
+    
+    className="max-w-xs transition duration-300 ease-in-out hover:scale-105">
       <div
         className="bg-gray-200  p-10 rounded-xl w-[250px] h-[350px]
          flex flex-col items-center justify-between hover:bg-gray-400 hover:cursor-pointer shadow-md"
