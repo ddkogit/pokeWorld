@@ -1,0 +1,26 @@
+
+Page has no outgoing links 
+
+Redirected page has no incoming internal links 
+
+Redirects
+3XX redirect 
+
+HTTP to HTTPS redirect 
+
+Content
+INDEXABLE
+H1 tag missing or empty 
+
+Low word count 
+
+Meta description too short 
+
+Title too short 
+
+Social tags
+Open Graph tags missing 
+
+Twitter card missing 
+
+Sitemaps

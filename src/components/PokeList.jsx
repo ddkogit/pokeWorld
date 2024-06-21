@@ -101,9 +101,9 @@ const PokeList = () => {
               Sorry. That Pokemon does not exists
             </div>
           ) : (
-            searchedList.map((poke) => (
+            searchedList.map((poke,index) => (
               <div key={poke.name} className="">
-                <SinglePoke name={poke.name} url={poke.url} />
+                <SinglePoke index={index} name={poke.name} url={poke.url} />
               </div>
             ))
           )}

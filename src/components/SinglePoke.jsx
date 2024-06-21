@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
-import useFetch from "../useFetch";
+import React, { useEffect, useState, useRef } from "react";
+import "./SinglePoke.css";
 
-
-const SinglePoke = ({ name, url }) => {
+const SinglePoke = ({ name, url, index }) => {
   const [pokeImage, setPokeImage] = useState();
-
   const [pokeType, setPokeType] = useState([]);
-
+  const contentRef = useRef(null);
 
   useEffect(() => {
     fetch(url)
@@ -15,27 +13,50 @@ const SinglePoke = ({ name, url }) => {
         setPokeType(data.types);
         setPokeImage(data.sprites.other.dream_world.front_default);
       })
-      .catch((error) => console.log("error occured"));
+      .catch((error) => console.log("error occurred"));
+  }, [url]);
+
+  useEffect(() => {
+    const item = contentRef.current;
+
+    const handleMouseMove = (e) => {
+      let positionPx = e.clientX - item.getBoundingClientRect().left;
+      let positionX = (positionPx / item.offsetWidth) * 100;
+
+      let positionPy = e.clientY - item.getBoundingClientRect().top;
+      let positionY = (positionPy / item.offsetHeight) * 100;
+
+      item.style.setProperty('--rX', (0.5) * (50 - positionY) + 'deg');
+      item.style.setProperty('--rY', -(0.5) * (50 - positionX) + 'deg');
+    };
+
+    const handleMouseOut = () => {
+      item.style.setProperty('--rX', '0deg');
+      item.style.setProperty('--rY', '0deg');
+    };
+
+    item.addEventListener('mousemove', handleMouseMove);
+    item.addEventListener('mouseout', handleMouseOut);
+
+    return () => {
+      item.removeEventListener('mousemove', handleMouseMove);
+      item.removeEventListener('mouseout', handleMouseOut);
+    };
   }, []);
 
- 
-
   return (
-    <div 
-    
-    className="max-w-xs transition duration-300 ease-in-out hover:scale-105">
+    <div className="wrapp max-w-xs transition duration-300 ease-in-out hover:scale-105 cursor-pointer">
       <div
-        className="bg-gray-200  p-10 rounded-xl w-[250px] h-[350px]
-         flex flex-col items-center justify-between hover:bg-gray-400 hover:cursor-pointer shadow-md"
+        ref={contentRef}
+        className="content bg-gray-200 p-10 rounded-xl w-[250px] h-[350px] flex flex-col items-center justify-between"
       >
-        
         <img
           src={pokeImage}
           className="w-[100px] h-[100px]"
           alt={`image of pokemon ${name}`}
         />
-        <h2 className="text-slate-900 font-bold text-3xl uppercase"> {name}</h2>
-        <div className="lg:flex gap-5 ">
+        <h2 className="text-slate-900 font-bold text-3xl uppercase">{name}</h2>
+        <div className="lg:flex gap-5">
           {pokeType?.map((type, index) => (
             <div
               key={index}
@@ -46,8 +67,6 @@ const SinglePoke = ({ name, url }) => {
           ))}
         </div>
       </div>
-
-      <h3></h3>
     </div>
   );
 };
