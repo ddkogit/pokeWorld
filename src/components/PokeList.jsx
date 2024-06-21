@@ -75,7 +75,9 @@ const PokeList = () => {
           onChange={handleSearch}
           value={searchPoke}
           type="text"
-          className="bg-slate-500 text-white p-2 lg:p-3
+          className=" 
+          bg-gradient-to-r from-green-400 to-blue-400
+          text-white p-2 lg:p-3 outline-none
           w-3/4 mx-auto rounded-2xl lg:text-xl
       placeholder-gray-200
       focus:outline:none
