@@ -48,7 +48,7 @@ const SinglePoke = ({ name, url, index }) => {
     <div className="wrapp max-w-xs transition duration-300 ease-in-out hover:scale-105 cursor-pointer">
       <div
         ref={contentRef}
-        className="content bg-gray-200 p-10 rounded-xl w-[250px] h-[350px] flex flex-col items-center justify-between"
+        className="content   rounded-xl  p-10 w-[250px] h-[350px] flex flex-col items-center justify-between"
       >
         <img
           src={pokeImage}

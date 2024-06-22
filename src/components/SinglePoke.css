@@ -1,6 +1,7 @@
 .wrapp {
     transform-style: preserve-3d;
     transform: perspective(100rem);
+   
   }
   
   .content {
@@ -8,5 +9,10 @@
     --rY: 0deg;
     transform: rotateX(var(--rX)) rotateY(var(--rY));
     transition: transform 0.2s;
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background-image: linear-gradient(120deg,rgba(225, 225, 225,0.3),rgba(0, 0, 0,0.3));
+
   }
   
